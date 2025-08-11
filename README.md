@@ -53,8 +53,8 @@ This project is a full-stack web application featuring a **React** frontend and 
 ### 1. Clone the repository
 
 ```bash
-git clone <your-repo-url>
-cd <your-repo-directory>
+git clone https://github.com/KARTIKNAIK18/minkube-deployment-K8s.git
+cd minkube-deployment-K8s
 
 ```
 
@@ -68,11 +68,11 @@ docker build -t backend-image:latest -f backend/Dockerfile .
 
 ```
 
-### 3. Load images into Minikube
+### 3. Push Inages to DockerHub(negligible)
 
 ```bash
-minikube image load frontend-image:latest
-minikube image load backend-image:latest
+docker push frontend-image:latest
+docker push backend-image:latest
 
 ```
 
@@ -81,7 +81,7 @@ minikube image load backend-image:latest
 Apply Kubernetes manifests:
 
 ```bash
-kubectl apply -f k8s/
+kubectl apply -f K8s/
 
 ```
 
@@ -99,7 +99,8 @@ kubectl get all -n git-app
 Add entries mapping Minikube IP to your custom domains:
 
 ```
-<minikube-ip> github-res.com git-backend.com
+<minikube-ip>127.0.0.1  github-res.com 
+<minikube-ip>/127.0.0.1 git-backend.com
 
 ```
 
@@ -110,7 +111,7 @@ minikube ip
 
 ```
 
-### 7. Start Minikube tunnel (for LoadBalancer services)
+### 7. Start Minikube tunnel (for Accesing SVC)
 
 ```bash
 minikube tunnel
@@ -184,6 +185,17 @@ kubectl delete pod -l app=backend -n git-app
     
 -   **Minikube IP changes:**  
     Always check Minikube IP (`minikube ip`) / 127.0.0.1 and update your hosts file accordingly.
+
+---
+
+### Frontend Output
+![github-res.com](Resources/frontend.png)
+
+---
+
+### Frontend Output
+![git-backend.com/api](Resources/backend.png)
+
     
 
 ----------
