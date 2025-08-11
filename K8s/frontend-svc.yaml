@@ -1,0 +1,15 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: frontend-svc
+  namespace: git-app
+  labels:
+    app: frontend
+spec:
+  selector:
+    app: git-front-app
+  ports:
+  - protocol: TCP
+    port: 5173
+    targetPort: 5173
+  type: ClusterIP

@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+  namespace: git-app
+  labels:
+    app: git-front-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: git-front-app
+  template:
+    metadata:
+      labels:
+        app: git-front-app
+    spec:
+      containers:
+      - name: frontend-app
+        image: kartiknaik/front-end-git:latest
+        ports:
+        - containerPort: 5173

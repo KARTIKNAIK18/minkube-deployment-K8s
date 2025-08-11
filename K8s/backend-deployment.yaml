@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+  namespace: git-app
+  labels:
+    app: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: git-back-app
+  template:
+    metadata:
+      labels:
+        app: git-back-app
+    spec:
+      containers:
+      - name: backend-app
+        image:  kartiknaik/backend-git-01:latest
+        ports:
+        - containerPort: 5000
